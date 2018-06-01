@@ -1,0 +1,10 @@
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\bin\Debug\Diplom.exe.config
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\bin\Debug\Diplom.exe
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\bin\Debug\Diplom.pdb
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.csprojAssemblyReference.cache
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.Form1.resources
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.Properties.Resources.resources
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.csproj.GenerateResource.cache
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.csproj.CoreCompileInputs.cache
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.exe
+C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.pdb

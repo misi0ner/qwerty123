@@ -1,0 +1,155 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using System.Net;
+
+namespace Diplom
+{
+    public partial class Form1 : Form
+    {
+        string fileName;
+        string text;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private string ToList(string[] str)
+        {
+            string s = "";
+            if (str[1] == "нумерованный")
+            {
+                int j = 1;
+                for (var i = 2; i < str.Length; ++i)
+                {
+                    s += j.ToString() + ". " + str[i] + "\n";
+                    ++j;
+                }
+            }
+            else
+            for (var i = 2; i < str.Length; ++i)
+            {
+                   s += str[i] + "\n";
+            }
+            return s;
+        }
+
+        private string ToTable(string[] str)
+        {
+            string s = "";
+            if (str[1].Contains("название таблицы"))
+            {
+                var s1 = str[1].Replace("название таблицы ", "");
+                if (s1.Contains("заголовки"))
+                {
+                    var s2 = s1.Replace(" заголовки ", "\t").Replace(" следующий заголовок ", "\t");//.Split('/');
+                    //for (int i = 0; i < s2.Length; ++i)
+                    //{
+                    //    s += s2[i] + '\t';
+                    //}
+                    s += s2 + '\n';
+                    for (int i = 2; i < str.Length; ++i)
+                    {
+                        var s3 = str[i].Replace(" ", "\t");//.Split(' ');
+                        //for (int j = 0; j < s3.Length; ++j)
+                        //    s += s3[j] + '\t';
+                        s += s3 + '\n';
+                    }
+                }
+            }
+            var ts = s.Split('\t', '\n');
+            int len = 0;
+            foreach (var x in ts)
+                if (x.Length > len)
+                    len = x.Length;
+            s = "";
+            int cnt = 0;
+            foreach (var x in ts)
+            {
+                s += x.PadRight(len) + '\t';
+                ++cnt;
+                if (cnt == 3)
+                {
+                    cnt = 0;
+                    s += '\n';
+                }
+            }
+            return s;
+        }
+
+        private Image DrawText(String text, Font font, Color textColor, Color backColor)
+        {
+            //first, create a dummy bitmap just to get a graphics object
+            Image img = new Bitmap(1, 1);
+            Graphics drawing = Graphics.FromImage(img);
+
+            //measure the string to see how big the image needs to be
+            SizeF textSize = drawing.MeasureString(text, font);
+
+            //free up the dummy image and old graphics object
+            img.Dispose();
+            drawing.Dispose();
+
+            //create a new image of the right size
+            img = new Bitmap((int)textSize.Width, (int)textSize.Height);
+
+            drawing = Graphics.FromImage(img);
+
+            //paint the background
+            drawing.Clear(backColor);
+
+            //create a brush for the text
+            Brush textBrush = new SolidBrush(textColor);
+
+            drawing.DrawString(text, font, textBrush, 0, 0);
+
+            drawing.Save();
+
+            textBrush.Dispose();
+            drawing.Dispose();
+
+            return img;
+        }
+
+        private void Text_Button_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openFileDialog1.FileName;
+                text = File.ReadAllText(fileName).ToLower().Replace(" конец строки ", "/");
+                var str = text.Split('/');
+                //var ls = str.ToList<string>();
+                //var fname = fileName.Replace(".txt", "2.txt");
+                //File.WriteAllLines(fname, str);
+                string ls = "";
+                if (str[0] == "список")
+                    ls = ToList(str);
+                if (str[0] == "таблица")
+                    ls = ToTable(str);
+                pictureBox1.Image = DrawText(ls, SystemFonts.MenuFont,Color.Black, pictureBox1.BackColor);
+            }
+        }
+
+        private void Voice_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Tools_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Help_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
