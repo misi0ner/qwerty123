@@ -124,33 +124,122 @@ namespace Diplom
             ConsoleApplication2.DrawHTML dw = new ConsoleApplication2.DrawHTML();
             while (cur_state < str.Length && (str[cur_state].ToLower() == "вершина" || str[cur_state].ToLower() == "ребро"))
             {
-                if(str[cur_state].ToLower() == "вершина")
+                if(str[cur_state] == "вершина")
                 {
                     cur_state++;
-                    vertices.Add(new Vertex(str[cur_state++], last_x + 150, last_y));
-                    last_x += 150;
-                }
-                if(str[cur_state].ToLower() == "ребро")
-                {
-                    cur_state++;
-                    if (str[cur_state++].ToLower() == "из") {
-                        Vertex from = null, to = null;
-                        foreach(var v in vertices)
-                            if(v.Name == str[cur_state])
-                                from = v;
+                    string name = str[cur_state++];
+                    if (str[cur_state] == "снизу")
+                    {
                         cur_state++;
-                        if (str[cur_state++].ToLower() == "в")
+                        var result = vertices.Find(v => v.Name == str[cur_state]);
+                        cur_state++;
+                        if (result != null)
+                            vertices.Add(new Vertex(name, result.coordinate.X, result.coordinate.Y + 150));
+                        else
+                            return;
+                    }
+                    else if (str[cur_state] == "сверху")
+                    {
+                        cur_state++;
+                        var result = vertices.Find(v => v.Name == str[cur_state]);
+                        cur_state++;
+                        if (result != null)
+                            vertices.Add(new Vertex(name, result.coordinate.X, result.coordinate.Y - 150));
+                        else
+                            return;
+                    }
+                    else if (str[cur_state] == "слева")
+                    {
+                        cur_state++;
+                        if (str[cur_state] == "снизу")
                         {
-                            foreach (var v in vertices)
-                                if (v.Name == str[cur_state])
-                                    to = v;
+                            cur_state++;
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X - 150, result.coordinate.Y + 150));
+                            else
+                                return;
+                        }
+                        else if (str[cur_state] == "сверху")
+                        {
+                            cur_state++;
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X - 150, result.coordinate.Y - 150));
+                            else
+                                return;
+                        }
+                        else
+                        {
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X - 150, result.coordinate.Y));
+                            else
+                                return;
+                        }
+                    }
+                    else if (str[cur_state] == "справа")
+                    {
+                        cur_state++;
+                        if (str[cur_state] == "снизу")
+                        {
+                            cur_state++;
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X + 150, result.coordinate.Y + 150));
+                            else
+                                return;
+                        }
+                        else if (str[cur_state] == "сверху")
+                        {
+                            cur_state++;
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X + 150, result.coordinate.Y - 150));
+                            else
+                                return;
+                        }
+                        else
+                        {
+                            var result = vertices.Find(v => v.Name == str[cur_state]);
+                            cur_state++;
+                            if (result != null)
+                                vertices.Add(new Vertex(name, result.coordinate.X + 150, result.coordinate.Y));
+                            else
+                                return;
+                        }
+                    }
+                    else
+                    {
+                        vertices.Add(new Vertex(name, last_x + 150, last_y));
+                        last_x += 150;
+                    }
+                }
+                if(str[cur_state] == "ребро")
+                {
+                    cur_state++;
+                    if (str[cur_state++] == "из") {
+                        Vertex from = null, to = null;
+                        from = vertices.Find(v => v.Name == str[cur_state]);
+                        cur_state++;
+                        if (str[cur_state++] == "в")
+                        {
+                            to = vertices.Find(v => v.Name == str[cur_state]);
                             cur_state++;
                         }
                         else
                             return; //Ошибка
 
                         if (from != null && to != null)
+                        {
+
                             edges.Add(new Edge(/*str[cur_state++]*/ "", from, to));
+                        }
                     }
                     else
                         return; //Ошибка
@@ -163,7 +252,14 @@ namespace Diplom
             }
             foreach(var e in edges)
             {
-                dw.DrawE(e.from.coordinate.X + 40, e.from.coordinate.Y + 40, e.to.coordinate.X, e.to.coordinate.Y);
+               if(e.to.coordinate.Y < e.from.coordinate.Y - 8)
+                    dw.DrawE(e.from.coordinate.X + 18, e.from.coordinate.Y - 8, e.to.coordinate.X +18, e.to.coordinate.Y + 43);
+                else if (e.to.coordinate.Y > e.from.coordinate.Y + 43)
+                    dw.DrawE(e.from.coordinate.X + 18, e.from.coordinate.Y + 43, e.to.coordinate.X + 18, e.to.coordinate.Y - 8);
+                else if (e.to.coordinate.X < e.from.coordinate.X - 8)
+                    dw.DrawE(e.from.coordinate.X - 8, e.from.coordinate.Y + 17, e.to.coordinate.X +50, e.to.coordinate.Y + 17);
+                else if (e.to.coordinate.X > e.from.coordinate.X + 50)
+                    dw.DrawE(e.from.coordinate.X + 50, e.from.coordinate.Y + 17, e.to.coordinate.X - 8, e.to.coordinate.Y + 17);
             }
 
             Encoding utf8 = Encoding.GetEncoding("UTF-8");
@@ -228,6 +324,7 @@ namespace Diplom
                 {
                     str = text.Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     ToHTML(str);
+                    System.Diagnostics.Process.Start("html_test.html");
                     return;
                 }
 
