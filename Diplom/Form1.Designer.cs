@@ -39,6 +39,7 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,16 +65,16 @@
             // 
             this.Voice_button.Location = new System.Drawing.Point(730, 46);
             this.Voice_button.Name = "Voice_button";
-            this.Voice_button.Size = new System.Drawing.Size(147, 36);
+            this.Voice_button.Size = new System.Drawing.Size(53, 23);
             this.Voice_button.TabIndex = 2;
-            this.Voice_button.Text = "Надиктовать";
+            this.Voice_button.Text = "play";
             this.Voice_button.UseVisualStyleBackColor = true;
             this.Voice_button.Click += new System.EventHandler(this.Voice_button_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(727, 105);
+            this.label2.Location = new System.Drawing.Point(727, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 4;
@@ -81,7 +82,7 @@
             // 
             // Text_Button
             // 
-            this.Text_Button.Location = new System.Drawing.Point(730, 121);
+            this.Text_Button.Location = new System.Drawing.Point(727, 110);
             this.Text_Button.Name = "Text_Button";
             this.Text_Button.Size = new System.Drawing.Size(147, 36);
             this.Text_Button.TabIndex = 5;
@@ -115,7 +116,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(730, 189);
+            this.progressBar1.Location = new System.Drawing.Point(727, 193);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(147, 23);
             this.progressBar1.TabIndex = 8;
@@ -123,18 +124,29 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(730, 170);
+            this.label3.Location = new System.Drawing.Point(727, 166);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Прогресс";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(802, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "stop";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(884, 402);
+            this.ClientSize = new System.Drawing.Size(887, 402);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.Help);
@@ -165,6 +177,7 @@
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
 

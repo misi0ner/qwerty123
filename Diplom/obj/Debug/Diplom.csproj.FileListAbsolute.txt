@@ -8,3 +8,14 @@ C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom
 C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.csproj.CoreCompileInputs.cache
 C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.exe
 C:\Users\MS\Documents\Visual Studio 2017\Projects\Diplom\Diplom\obj\Debug\Diplom.pdb
+C:\proj\ara_dipl\Diplom\bin\Debug\Diplom.exe.config
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.exe
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.pdb
+C:\proj\ara_dipl\Diplom\bin\Debug\Diplom.exe
+C:\proj\ara_dipl\Diplom\bin\Debug\Diplom.pdb
+C:\proj\ara_dipl\Diplom\bin\Debug\NAudio.dll
+C:\proj\ara_dipl\Diplom\bin\Debug\NAudio.xml
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.csprojResolveAssemblyReference.cache
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.Form1.resources
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.Properties.Resources.resources
+C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.csproj.GenerateResource.Cache
