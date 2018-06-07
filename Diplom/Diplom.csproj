@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="draw_automate.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

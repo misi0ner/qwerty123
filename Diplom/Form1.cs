@@ -89,6 +89,90 @@ namespace Diplom
             return s;
         }
 
+        class Vertex
+        {
+            public string Name = "";
+            public Point coordinate;
+
+            public Vertex(string name, int x, int y)
+            {
+                Name = name;
+                coordinate = new Point(x, y);
+            }
+        }
+
+        class Edge
+        {
+            public string Name = "";
+            public Vertex from, to;
+            public Edge(string name, Vertex f, Vertex t)
+            {
+                Name = name;
+                from = f;
+                to = t;
+            }
+        }
+
+        private void ToHTML(string[] str)
+        {
+            int cur_state = 1;
+            int last_x = 50, last_y = 100;
+            List<Vertex> vertices = new List<Vertex>();
+            List<Edge> edges = new List<Edge>();
+            ConsoleApplication2.DrawHTML dw = new ConsoleApplication2.DrawHTML();
+            while (cur_state < str.Length && (str[cur_state].ToLower() == "вершина" || str[cur_state].ToLower() == "ребро"))
+            {
+                if(str[cur_state].ToLower() == "вершина")
+                {
+                    cur_state++;
+                    vertices.Add(new Vertex(str[cur_state++], last_x + 150, last_y));
+                    last_x += 150;
+                }
+                if(str[cur_state].ToLower() == "ребро")
+                {
+                    cur_state++;
+                    if (str[cur_state++].ToLower() == "из") {
+                        Vertex from = null, to = null;
+                        foreach(var v in vertices)
+                            if(v.Name == str[cur_state])
+                                from = v;
+                        cur_state++;
+                        if (str[cur_state++].ToLower() == "в")
+                        {
+                            foreach (var v in vertices)
+                                if (v.Name == str[cur_state])
+                                    to = v;
+                            cur_state++;
+                        }
+                        else
+                            return; //Ошибка
+
+                        if (from != null && to != null)
+                            edges.Add(new Edge(/*str[cur_state++]*/ "", from, to));
+                    }
+                    else
+                        return; //Ошибка
+                }
+            }
+
+            foreach(var v in vertices)
+            {
+                dw.DrawV(v.Name, v.coordinate.X, v.coordinate.Y);
+            }
+            foreach(var e in edges)
+            {
+                dw.DrawE(e.from.coordinate.X + 40, e.from.coordinate.Y + 40, e.to.coordinate.X, e.to.coordinate.Y);
+            }
+
+            Encoding utf8 = Encoding.GetEncoding("UTF-8");
+            Encoding win1251 = Encoding.GetEncoding("Windows-1251");
+
+            byte[] utf8Bytes = win1251.GetBytes(dw.GetHTML());
+            byte[] win1251Bytes = Encoding.Convert(utf8, win1251, utf8Bytes);
+
+            System.IO.File.WriteAllText("html_test.html", dw.GetHTML());
+        }
+
         private Image DrawText(String text, Font font, Color textColor, Color backColor)
         {
             //first, create a dummy bitmap just to get a graphics object
@@ -138,6 +222,13 @@ namespace Diplom
                     ls = ToList(str);
                 if (str[0] == "таблица")
                     ls = ToTable(str);
+                if (str[0] == "автомат")
+                {
+                    str = text.Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    ToHTML(str);
+                    return;
+                }
+
                 pictureBox1.Image = DrawText(ls, SystemFonts.MenuFont,Color.Black, pictureBox1.BackColor);
             }
         }
@@ -234,7 +325,7 @@ namespace Diplom
 
         private void Help_Click(object sender, EventArgs e)
         {
-
+            
         }
 
        /* private void button1_Click(object sender, EventArgs e)
