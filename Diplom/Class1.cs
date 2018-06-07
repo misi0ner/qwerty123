@@ -11,8 +11,8 @@ namespace speechv2
 {
     class Program
     {
-        static string strres;
-        private static void GoogleSpeechToText()
+        static public string strres;
+        public static void GoogleSpeechToText(string comand)
         {
             string uri = "https://www.google.com/speech-api/full-duplex/v1/up?output=json&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&pair=" + GenerateUnique(16) + "&lang=ru-RU&pFilter=2&maxAlternatives=10&client=chromium";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
@@ -25,7 +25,7 @@ namespace speechv2
             request.Headers.Set(HttpRequestHeader.AcceptLanguage, "en-GB,en-US;q=0.8,en;q=0.6");
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36";
 
-            string path = @"C:\hello.flac";
+            string path = comand;
             FileInfo fInfo = new FileInfo(path);
             var numBytes = fInfo.Length;
             byte[] data;
@@ -74,12 +74,12 @@ namespace speechv2
             }
             return buffer;
         }
-        static void сMain(string[] args)
+       /* static void сMain(string[] args)
         {
             GoogleSpeechToText();
 
             Console.WriteLine(strres);
             Console.ReadKey();
-        }
+        }*/
     }
 }

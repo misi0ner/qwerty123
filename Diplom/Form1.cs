@@ -15,6 +15,8 @@ using NAudio.Wave;
 using NAudio.FileFormats;
 using NAudio.CoreAudioApi;
 
+using speechv2;
+
 namespace Diplom
 {
     public partial class Form1 : Form
@@ -276,6 +278,9 @@ namespace Diplom
                 waveIn = null;
                 writer.Close();
                 writer = null;
+
+                speechv2.Program.GoogleSpeechToText(outputFilename);
+                MessageBox.Show(speechv2.Program.strres);
             }
         }
         //Начинаем запись - обработчик нажатия кнопки
@@ -312,11 +317,8 @@ namespace Diplom
             {
                 StopRecording();
             }
+
         }
-
-
-
-
 
         private void Tools_Click(object sender, EventArgs e)
         {
