@@ -54,6 +54,7 @@ namespace Diplom
         private string ToTable(string[] str)
         {
             string s = "";
+            dataGridView1.Rows.Clear();
             if (str[1].Contains("название таблицы"))
             {
                 var s1 = str[1].Replace("название таблицы ", "");
