@@ -30,37 +30,17 @@ namespace ConsoleApplication2
 
         }
 
-        public void DrawV(int left, int top)
+        public void DrawV(string name, int left, int top)
         {
             html_style += String.Format(".v{0}", countV.ToString()) + "{ "
                         + String.Format(" padding: 13px 0 0 20px; width: 30px; height: 30px; position: absolute;" +
                                                 "border: 4px double black; border-radius: 100%;" +
                                                 "top:  {0}px; left:  {1}px;", 
                                                 top.ToString(), left.ToString()) + "}";
-            html_v += String.Format("<div class=\"v{0}\">{1}</div>", countV.ToString(), countV.ToString());
+            html_v += String.Format("<div class=\"v{0}\">{1}</div>", countV.ToString(), name);
 
             countV += 1;
         }
-    }
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            DrawHTML dw = new DrawHTML();
-
-            dw.DrawV(100, 100);
-            dw.DrawV(350, 220);
-            dw.DrawE(140, 140, 350, 220);
-
-            Encoding utf8 = Encoding.GetEncoding("UTF-8");
-            Encoding win1251 = Encoding.GetEncoding("Windows-1251");
-
-            byte[] utf8Bytes = win1251.GetBytes(dw.GetHTML());
-            byte[] win1251Bytes = Encoding.Convert(utf8, win1251, utf8Bytes);
-
-            Console.WriteLine(dw.GetHTML());;
-
-        }
     }
 }
