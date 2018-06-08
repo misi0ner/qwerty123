@@ -65,10 +65,11 @@ namespace Diplom
                     //    s += s2[i] + '\t';
                     //}
                     var headers = s2.Split('\t').ToList();
-                    dataGridView1.ColumnCount = headers.Count;
-                    for (int i = 0; i < headers.Count; ++i)
+                    dataGridView1.TopLeftHeaderCell.Value = headers[0]; 
+                    dataGridView1.ColumnCount = headers.Count -1;
+                    for (int i = 1; i < headers.Count; ++i)
                     {
-                        dataGridView1.Columns[i].HeaderCell.Value = headers[i];
+                        dataGridView1.Columns[i - 1].HeaderCell.Value = headers[i];
                         //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                     }
                     
@@ -81,9 +82,10 @@ namespace Diplom
 
                         var values = s3.Split('\t').ToList();
                         dataGridView1.Rows.Add(1);
-                        for (int j = 0; j < values.Count; ++j)
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].HeaderCell.Value = values[0];
+                        for (int j = 1; j < values.Count; ++j)
                         {
-                            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j].Value = values[j];
+                            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j - 1].Value = values[j];
                         }
                         s += s3 + '\n';
                     }
