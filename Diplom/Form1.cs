@@ -16,6 +16,7 @@ using NAudio.FileFormats;
 using NAudio.CoreAudioApi;
 
 using speechv2;
+using Microsoft.Win32;
 
 namespace Diplom
 {
@@ -37,6 +38,7 @@ namespace Diplom
                 for (var i = 2; i < str.Length; ++i)
                 {
                     s += j.ToString() + ". " + str[i] + "\n";
+                    listBox1.Items.Add(j.ToString() + ". " + str[i]);
                     ++j;
                 }
             }
@@ -44,7 +46,8 @@ namespace Diplom
             for (var i = 2; i < str.Length; ++i)
             {
                    s += str[i] + "\n";
-            }
+                    listBox1.Items.Add(str[i]);
+                }
             return s;
         }
 
@@ -61,12 +64,27 @@ namespace Diplom
                     //{
                     //    s += s2[i] + '\t';
                     //}
+                    var headers = s2.Split('\t').ToList();
+                    dataGridView1.ColumnCount = headers.Count;
+                    for (int i = 0; i < headers.Count; ++i)
+                    {
+                        dataGridView1.Columns[i].HeaderCell.Value = headers[i];
+                        //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                    }
+                    
                     s += s2 + '\n';
                     for (int i = 2; i < str.Length; ++i)
                     {
                         var s3 = str[i].Replace(" ", "\t");//.Split(' ');
                         //for (int j = 0; j < s3.Length; ++j)
                         //    s += s3[j] + '\t';
+
+                        var values = s3.Split('\t').ToList();
+                        dataGridView1.Rows.Add(1);
+                        for (int j = 0; j < values.Count; ++j)
+                        {
+                            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[j].Value = values[j];
+                        }
                         s += s3 + '\n';
                     }
                 }
@@ -317,14 +335,30 @@ namespace Diplom
                 //File.WriteAllLines(fname, str);
                 string ls = "";
                 if (str[0] == "список")
+                {
                     ls = ToList(str);
+                    dataGridView1.Visible = false;
+                    webBrowser1.Visible = false;
+                    listBox1.Visible = true;
+                }
                 if (str[0] == "таблица")
+                {
                     ls = ToTable(str);
+                    dataGridView1.Visible = true;
+                    webBrowser1.Visible = false;
+                    listBox1.Visible = false;
+                }
                 if (str[0] == "автомат")
                 {
                     str = text.Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     ToHTML(str);
+                    
+                    webBrowser1.Navigate(Application.StartupPath + @"\html_test.html");
                     System.Diagnostics.Process.Start("html_test.html");
+
+                    dataGridView1.Visible = false;
+                    webBrowser1.Visible = true;
+                    listBox1.Visible = false;
                     return;
                 }
 
@@ -427,9 +461,24 @@ namespace Diplom
             
         }
 
-       /* private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
+            if (key != null)
+            {
+                key.SetValue("Diplom.exe", 9000, RegistryValueKind.DWord);
+            }
 
-        }*/
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
+            if (key != null)
+            {
+                key.SetValue("Diplom.exe", 9000, RegistryValueKind.DWord);
+            }
+        }
+
+        /* private void button1_Click(object sender, EventArgs e)
+         {
+
+         }*/
     }
 }

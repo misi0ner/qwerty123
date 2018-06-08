@@ -19,3 +19,14 @@ C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.csprojResolveAssemblyReference.cache
 C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.Form1.resources
 C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.Properties.Resources.resources
 C:\proj\ara_dipl\Diplom\obj\Debug\Diplom.csproj.GenerateResource.Cache
+C:\qwerty123\Diplom\bin\Debug\Diplom.exe.config
+C:\qwerty123\Diplom\bin\Debug\Diplom.exe
+C:\qwerty123\Diplom\bin\Debug\Diplom.pdb
+C:\qwerty123\Diplom\bin\Debug\NAudio.dll
+C:\qwerty123\Diplom\bin\Debug\NAudio.xml
+C:\qwerty123\Diplom\obj\Debug\Diplom.csprojResolveAssemblyReference.cache
+C:\qwerty123\Diplom\obj\Debug\Diplom.Form1.resources
+C:\qwerty123\Diplom\obj\Debug\Diplom.Properties.Resources.resources
+C:\qwerty123\Diplom\obj\Debug\Diplom.csproj.GenerateResource.Cache
+C:\qwerty123\Diplom\obj\Debug\Diplom.exe
+C:\qwerty123\Diplom\obj\Debug\Diplom.pdb

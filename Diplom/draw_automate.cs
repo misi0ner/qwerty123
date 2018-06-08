@@ -15,7 +15,7 @@ namespace ConsoleApplication2
 
         public string GetHTML()
         {
-            return String.Format("<!doctype html><html> <head> {0} </style></head><body> {1} </svg> {2}</body></html>", 
+            return String.Format("<!DOCTYPE html><html> <head> <meta http-equiv=\"X - UA - Compatible\" content=\"IE = edge, chrome = 1\"> {0} </style></head><body> {1} </svg> {2}</body></html>", 
                                                 html_style, html_e, html_v);
            
         }
