@@ -20,6 +20,27 @@ namespace ConsoleApplication2
            
         }
 
+        public void DrawE(int x1, int y1, int sx1, int sy1, int sx2, int sy2, int x2, int y2)
+        {
+            html_e += String.Format("<path d =\"M {0}, {1} C {2}, {3}, {4}, {5}, {6}, {7}\"  stroke=\"black\" fill=\"transparent\" />",
+                x1.ToString(), y1.ToString(), sx1.ToString(), sy1.ToString(), 
+                sx2.ToString(), sy2.ToString(), x2.ToString(), y2.ToString());
+
+            html_e += String.Format("<circle cx=\"{0}\" cy=\"{1}\" r=\"2\" stroke-width=\"1\" stroke=\"black\"/>",
+                x2.ToString(), y2.ToString());
+
+        }
+
+        public void DrawE(int x1, int y1, int sx1, int sy1, int x2, int y2)
+        {
+            html_e += String.Format("<path d =\"M10 {0} {1} Q {2} {3} {4} {5}\" stroke=\"black\" fill=\"transparent\" />",
+                x1.ToString(), y1.ToString(), sx1.ToString(), sy1.ToString(), x2.ToString(), y2.ToString());
+
+            html_e += String.Format("<circle cx=\"{0}\" cy=\"{1}\" r=\"2\" stroke-width=\"1\" stroke=\"black\"/>",
+                x2.ToString(), y2.ToString());
+
+        }
+
         public void DrawE(int x1, int y1, int x2, int y2)
         {
             html_e += String.Format("<line stroke-width=\"1\" stroke=\"black\" x1 = \"{0}\"  y1 = \"{1}\" x2 = \"{2}\" y2 = \"{3}\"/>",
