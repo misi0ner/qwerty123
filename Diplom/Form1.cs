@@ -112,7 +112,7 @@ namespace Diplom
             return s;
         }
 
-        class Vertex
+        /*class Vertex
         {
             public string Name = "";
             public Point coordinate;
@@ -142,7 +142,7 @@ namespace Diplom
             int last_x = 50, last_y = 100;
             List<Vertex> vertices = new List<Vertex>();
             List<Edge> edges = new List<Edge>();
-            ConsoleApplication2.DrawHTML dw = new ConsoleApplication2.DrawHTML();
+            DrawHTML dw = new DrawHTML();
             while (cur_state < str.Length && (str[cur_state].ToLower() == "вершина" || str[cur_state].ToLower() == "ребро"))
             {
                 if(str[cur_state] == "вершина")
@@ -259,7 +259,7 @@ namespace Diplom
                         if (from != null && to != null)
                         {
 
-                            edges.Add(new Edge(/*str[cur_state++]*/ "", from, to));
+                            edges.Add(new Edge(str[cur_state++]"", from, to));
                         }
                     }
                     else
@@ -269,8 +269,9 @@ namespace Diplom
 
             foreach(var v in vertices)
             {
-                dw.DrawV(v.Name, v.coordinate.X, v.coordinate.Y);
+                dw.DrawV(v.Name, v.coordinate.X, v.coordinate.Y, true);
             }
+
             foreach(var e in edges)
             {
                if(e.to.coordinate.Y < e.from.coordinate.Y - 8)
@@ -290,7 +291,7 @@ namespace Diplom
             byte[] win1251Bytes = Encoding.Convert(utf8, win1251, utf8Bytes);
 
             System.IO.File.WriteAllText("html_test.html", dw.GetHTML());
-        }
+        }*/
 
         private Image DrawText(String text, Font font, Color textColor, Color backColor)
         {
@@ -353,8 +354,10 @@ namespace Diplom
                 }
                 if (str[0] == "автомат")
                 {
-                    str = text.Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    ToHTML(str);
+                    //str = text.Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    Automate au = new Automate(str);
+                    
+                    //ToHTML(str);
                     
                     webBrowser1.Navigate(Application.StartupPath + @"\html_test.html");
                     System.Diagnostics.Process.Start("html_test.html");
