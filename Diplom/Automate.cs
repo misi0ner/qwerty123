@@ -117,6 +117,8 @@ namespace Diplom
             int x0 = 0;
             int y0 = 0;
 
+
+
             if (f == 0)
             {
                 if (c_all / c_only >= 2)
@@ -184,18 +186,58 @@ namespace Diplom
                         }
                     }
 
+
+
+                    Point p1 = PointOfBorder(e.from.coordinate.X + 17, e.from.coordinate.Y + 17, e.to.coordinate.X + 17,
+                        e.to.coordinate.Y + 17);
+                    Point p2 = PointOfBorder(e.to.coordinate.X + 17, e.to.coordinate.Y + 17, e.from.coordinate.X + 17,
+                            e.from.coordinate.Y + 17);
+
                     if (p_intersection)
                     {
-                        int xw = (e.from.coordinate.X + 17 + e.to.coordinate.X + 17) / 2 + xc;
-                        int yw = (e.from.coordinate.Y + 17 + e.to.coordinate.Y + 17) / 2 + yc;
-                        dh.DrawE(e.from.coordinate.X + 17, e.from.coordinate.Y + 17, xw, yw,
-                                   e.to.coordinate.X + 17, e.to.coordinate.Y + 17, e.Name);
+                        int xw = (p1.X + p2.X) / 2 + xc;
+                        int yw = (p1.Y + p2.Y) / 2 + yc;
+                        dh.DrawE(p1.X, p1.Y, xw, yw,
+                                 p2.X, p2.Y, e.Name);
                     }
                     else
-                        dh.DrawE(e.from.coordinate.X + 17, e.from.coordinate.Y + 17,
-                                 e.to.coordinate.X + 17, e.to.coordinate.Y + 17, e.Name);
+                        dh.DrawE(p1.X, p1.Y,
+                                 p2.X + 17, p2.Y, e.Name);
+
                 }
             }
+        }
+
+        private Point PointOfBorder(int x1, int y1, int x2, int y2)
+        {
+            double A1 = y1 - y2;
+            double B1 = x2 - x1;
+            double C1 = x1 * y2 - x2 * y1;
+            A1 = -A1 / B1;
+            B1 = -C1 / B1;
+            double a = A1 * A1 + 1;
+            double b = 2 * A1 * B1 - 2 * x1 - 2 * A1 * y1;
+            double c = Math.Pow(x1, 2) +
+                       Math.Pow(y1, 2) +
+                       Math.Pow(B1, 2) - 2 * B1 * y1 - 600;
+            double sD1 = Math.Sqrt(b * b - 4 * a * c);
+            int x11, x21, iA1, iB1;
+            int.TryParse(Math.Floor((-b - sD1) / (2 * a)).ToString(), out x11);
+            //x11 = System.Convert.ToInt32((-b - sD1) / (2 * a));
+            int.TryParse(Math.Floor((-b + sD1) / (2 * a)).ToString(), out x21);
+            //x21 = System.Convert.ToInt32((-b + sD1) / (2 * a));
+            int.TryParse(A1.ToString(), out iA1);
+            //iA1 = System.Convert.ToInt32(A1);
+            int.TryParse(B1.ToString(), out iB1);
+            //iB1 = System.Convert.ToInt32(B1);
+            int y11 = iA1 * x11 + iB1;
+            int y21 = iA1 * x21 + iB1;
+            double d1 = Math.Sqrt((x11 - x2) * (x11 - x2) + (y11 - y2) * (y11 - y2));
+            double d2 = Math.Sqrt((x21 - x2) * (x21 - x2) + (y21 - y2) * (y21 - y2));
+            if (d1 < d2)
+                return new Point(x11, y11);
+            else
+                return new Point(x21, y21);
         }
 
         private double getH(int x1, int y1, int x2, int y2, int vx, int vy)

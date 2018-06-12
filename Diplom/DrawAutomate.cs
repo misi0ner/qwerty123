@@ -55,7 +55,11 @@ namespace Diplom
             html_e += String.Format("<circle cx=\"{0}\" cy=\"{1}\" r=\"2\" stroke-width=\"1\" stroke=\"black\"/>",
                 x2.ToString(), y2.ToString());
 
-            DrawNameV(name, (x1 + x2 - 34) / 2, (y1 + y2 - 34) / 2); // 17+17 == 34
+            int c1 = (x1 + x2 - 30) / 2;
+            int c2 = (y1 + y2 - 60) / 2;
+
+
+            DrawNameV(name, c1, c2); // 17+17 == 34
         }
 
         public void DrawV(string name, int left, int top, int is_end)
