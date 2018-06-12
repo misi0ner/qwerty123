@@ -68,9 +68,9 @@ namespace Diplom
                     Vertex v2 = new Vertex();
                     foreach (var v in list_v)
                     {
-                        if (v.Name == sub_str[2][0])
+                        if (v.Name == sub_str[1][0])
                             v1 = v;
-                        if (v.Name == sub_str[3][0])
+                        if (v.Name == sub_str[2][0])
                             v2 = v;
                     }
                     //Обработчик исключения

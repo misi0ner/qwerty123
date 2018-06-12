@@ -41,3 +41,15 @@ C:\proj\test_a\Diplom\obj\Debug\Diplom.csprojResolveAssemblyReference.cache
 C:\proj\test_a\Diplom\obj\Debug\Diplom.Form1.resources
 C:\proj\test_a\Diplom\obj\Debug\Diplom.Properties.Resources.resources
 C:\proj\test_a\Diplom\obj\Debug\Diplom.csproj.GenerateResource.Cache
+C:\proj\test_au\Diplom\obj\Debug\Diplom.csprojResolveAssemblyReference.cache
+C:\proj\test_au\Diplom\obj\Debug\Diplom.Form1.resources
+C:\proj\test_au\Diplom\obj\Debug\Diplom.Properties.Resources.resources
+C:\proj\test_au\Diplom\obj\Debug\Diplom.csproj.GenerateResource.Cache
+C:\proj\test_au\Diplom\obj\Debug\Diplom.csproj.CoreCompileInputs.cache
+C:\proj\test_au\Diplom\obj\Debug\Diplom.exe
+C:\proj\test_au\Diplom\obj\Debug\Diplom.pdb
+C:\proj\test_au\Diplom\bin\Debug\Diplom.exe.config
+C:\proj\test_au\Diplom\bin\Debug\Diplom.exe
+C:\proj\test_au\Diplom\bin\Debug\Diplom.pdb
+C:\proj\test_au\Diplom\bin\Debug\NAudio.dll
+C:\proj\test_au\Diplom\bin\Debug\NAudio.xml
