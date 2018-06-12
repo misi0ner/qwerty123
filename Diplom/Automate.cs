@@ -12,7 +12,7 @@ namespace Diplom
         public char Name;
         public Point coordinate;
         public int count_e = 0;
-        int is_end;
+        public int is_end;
 
         public Vertex()
         { }
@@ -58,7 +58,8 @@ namespace Diplom
                 {
                     if (sub_str[1] == "финальная")
                         list_v.Add(new Vertex(sub_str[2][0], 1));
-                    list_v.Add(new Vertex(sub_str[1][0], 0));
+                    else
+                        list_v.Add(new Vertex(sub_str[1][0], 0));
                 }
 
                 if (sub_str[0] == "ребро")
@@ -140,7 +141,11 @@ namespace Diplom
         private void draw_au()
         {
             foreach (var v in list_v)
-                dh.DrawV(v.Name.ToString(), v.coordinate.X, v.coordinate.Y, 0);
+                dh.DrawV(v.Name.ToString(), v.coordinate.X, v.coordinate.Y, v.is_end);
+
+            foreach (var e in list_e)
+                dh.DrawE(e.from.coordinate.X+17, e.from.coordinate.Y + 17, 
+                         e.to.coordinate.X + 17, e.to.coordinate.Y + 17);
         }
     }
 }
