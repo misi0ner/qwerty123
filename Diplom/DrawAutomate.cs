@@ -44,7 +44,6 @@ namespace Diplom
                 x2.ToString(), y2.ToString());
 
             DrawNameV(name, sx1, sy1); // 17+17 == 34
-
         }
 
         public void DrawE(int x1, int y1, int x2, int y2, string name)
@@ -90,7 +89,5 @@ namespace Diplom
 
             countV += 1;
         }
-
-
     }
 }

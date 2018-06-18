@@ -9,7 +9,7 @@ namespace Diplom
 {
     class Vertex
     {
-        public char Name;
+        public string Name;
         public Point coordinate;
         public int count_e = 0;
         public int is_end;
@@ -17,7 +17,7 @@ namespace Diplom
         public Vertex()
         { }
 
-        public Vertex(char name, int is_end)
+        public Vertex(string name, int is_end)
         {
             Name = name;
             this.is_end = is_end;
@@ -57,9 +57,9 @@ namespace Diplom
                 if (sub_str[0] == "вершина")
                 {
                     if (sub_str[1] == "финальная")
-                        list_v.Add(new Vertex(sub_str[2][0], 1));
+                        list_v.Add(new Vertex(sub_str[2], 1));
                     else
-                        list_v.Add(new Vertex(sub_str[1][0], 0));
+                        list_v.Add(new Vertex(sub_str[1], 0));
                 }
 
                 if (sub_str[0] == "ребро")
@@ -68,9 +68,9 @@ namespace Diplom
                     Vertex v2 = new Vertex();
                     foreach (var v in list_v)
                     {
-                        if (v.Name == sub_str[2][0])
+                        if (v.Name == sub_str[2])
                             v1 = v;
-                        if (v.Name == sub_str[3][0])
+                        if (v.Name == sub_str[3])
                             v2 = v;
                     }
                     //Обработчик исключения
